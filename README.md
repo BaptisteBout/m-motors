@@ -1,59 +1,102 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# M-Motors - Plateforme de Gestion de Véhicules d'Occasion
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Laravel](https://img.shields.io/badge/Framework-Laravel-red)
+![MySQL](https://img.shields.io/badge/Database-MySQL-blue)
+![Build](https://img.shields.io/badge/Status-Stable-brightgreen)
 
-## About Laravel
+## 📌 Présentation du Projet
+M-Motors est une application robuste développée avec Laravel pour la gestion d'un parc automobile national. Ce projet met l'accent sur la qualité du code, la sécurité des données et la mise en place d'un environnement de monitoring professionnel.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Guide d'Installation (Le Manuel "IKEA")
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Suivez scrupuleusement ces étapes pour déployer l'application sur votre environnement local.
 
-## Learning Laravel
+### 1. Clonage du projet
+```bash
+git clone [https://github.com/BaptisteBout/m-motors.git](https://github.com/BaptisteBout/m-motors.git)
+cd m-motors
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 2. Installation des dépendances
+```bash
+composer install
+npm install && npm run build
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 3. Configuration de l'environnement
+Copiez le fichier d'exemple pour créer votre fichier .env :
 
-## Laravel Sponsors
+```bash
+cp .env.example .env
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+> **⚠️ SÉCURITÉ IMPORTANTE :** Conformément aux recommandations, ce projet utilise **MySQL** (et non SQLite) pour garantir la sécurité des données.
 
-### Premium Partners
+Veuillez configurer vos accès de base de données dans le fichier `.env` :
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```env
+DB_CONNECTION=mysql
+DB_DATABASE=m_motors
+DB_USERNAME=votre_utilisateur
+DB_PASSWORD=votre_mot_de_passe
+```
 
-## Contributing
+### 4. Initialisation de l'application
+Générez la clé de sécurité et lancez les migrations avec les données de test (seeds) :
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+php artisan key:generate
+php artisan migrate --seed
+```
 
-## Code of Conduct
+### 5. Lancement
+```bash
+php artisan serve
+```
+L'application est maintenant disponible sur http://localhost:8000.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🛠 Bonnes Pratiques & Architecture
 
-## Security Vulnerabilities
+### Gestion du Git (GitFlow)
+Le projet respecte une stratégie de branches rigoureuse pour éviter tout bug en production :
+- **Main** : Code stable et déployé en production.
+- **Develop** : Branche principale d'intégration des fonctionnalités.
+- **Feature/** : Branches isolées pour le développement de chaque User Story.
+- **Hotfix/** : Corrections urgentes basées sur les alertes de monitoring.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Architecture Logicielle
+- **Service Layer** : La logique métier est isolée dans des classes de Service pour garder des contrôleurs légers et maintenables.
+- **Sécurité des secrets** : Aucun mot de passe ou clé API n'est stocké en dur dans le code ; tout passe par le fichier `.env` (exclu du versioning).
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🧪 Tests & Qualité du Code
+Le projet intègre une suite de tests automatisés validant le **"Métier Client"** :
+
+- **Tests Fonctionnels (End-to-End)** : Vérification des parcours critiques (création de véhicules, modification, flux de réservation).
+- **Tests de Sécurité** : Validation de l'authentification et de la protection des routes.
+- **Analyse Statique** : Utilisation de **PHPStan** pour garantir un code sans dette technique et éviter les régressions.
+
+### Lancer la suite de tests
+```bash
+php artisan test
+```
+
+## 📊 Monitoring & Maintenance (RTO/RPO)
+Pour assurer une haute disponibilité et une correction rapide selon les objectifs RTO/RPO :
+- **Sentry/Flare** : Capture automatique des erreurs 500 et remontée des stack traces.
+- **Alerting Slack** : Notifications immédiates à l'équipe technique en cas d'exception.
+- **Logs Hiérarchisés** : Utilisation du driver stack (Emergency, Error, Info) envoyé vers Papertrail pour l'audit des stocks.
+
+---
+
+## 🔑 Accès de Test
+
+| Rôle | Email | Mot de passe |
+| :--- | :--- | :--- |
+| **Administrateur** | admin@m-motors.com | password123 |
+| **Utilisateur** | user@m-motors.com | password123 |
+
+> **📍 URL de Production :** [VOTRE_LIEN_DE_DEPLOYEMENT_ICI]
