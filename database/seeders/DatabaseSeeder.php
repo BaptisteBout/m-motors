@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         // Création d'un compte employé pour la démo du Back-office
         User::create([
             'name' => 'Admin M-Motors',
-            'email' => 'admin@m-motors.fr',
+            'email' => 'admin@m-motors.com',
             'password' => Hash::make('password'),
             'role' => 'admin',
         ]);
@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
             'vin' => 'XYZ123456789',
             'price_purchase' => 45000,
             'price_rental_monthly' => 550.00,
-            'acquisition_type' => 'both',
+            'acquisition_type' => 'achat',
             'status' => 'available',
             'is_new' => true,
         ]);

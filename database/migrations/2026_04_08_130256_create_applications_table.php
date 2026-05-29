@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('vehicle_id')->constrained();
-            $table->enum('type', ['purchase', 'rental']);
+            $table->enum('type', ['achat', 'location', 'vente']);
             $table->enum('status', ['pending', 'document_missing', 'under_review', 'approved', 'rejected'])->default('pending');
             $table->text('admin_notes')->nullable(); // Notes pour les 800 employés
             $table->timestamp('submitted_at')->useCurrent();

@@ -4,6 +4,7 @@
     </IfModule>
 
     RewriteEngine On
+RewriteBase /m-motors/
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .

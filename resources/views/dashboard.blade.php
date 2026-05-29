@@ -9,7 +9,20 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+                    <div class="mb-4">
+                        {{ __("You're logged in!") }}
+                    </div>
+
+                    {{-- Bouton d'accès au CRUD Admin réservé aux administrateurs --}}
+                    @if(auth()->user()->role === 'admin')
+                        <div class="mt-6 border-t pt-4">
+                            <a href="{{ route('admin.vehicles.index') }}"
+                                class="btn btn-outline-dark">
+                                🛠 Gérer le parc automobile (Admin) 
+                            </a>
+                        </div>
+                    @endif
+
                 </div>
             </div>
         </div>

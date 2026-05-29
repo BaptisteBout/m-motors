@@ -6,7 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vehicle extends Model
 {
-    protected $fillable = ['brand', 'model', 'price_purchase', 'acquisition_type', 'status'];
+    protected $fillable = [
+        'brand',
+        'model',
+        'vin',
+        'price_purchase',
+        'price_rental_monthly',
+        'acquisition_type',
+        'status',
+        'is_new',
+        'options'
+    ];
+
+    protected $casts = [
+        'is_new' => 'boolean',
+        'options' => 'array',
+        'price_purchase' => 'decimal:2',
+        'price_rental_monthly' => 'decimal:2',
+    ];
 
     /**
      * Logique de basculement Vente <=> Location
