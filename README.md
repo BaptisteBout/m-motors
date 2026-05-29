@@ -96,7 +96,7 @@ Pour assurer une haute disponibilité et une correction rapide selon les objecti
 
 | Rôle | Email | Mot de passe |
 | :--- | :--- | :--- |
-| **Administrateur** | admin@m-motors.com | password123 |
-| **Utilisateur** | user@m-motors.com | password123 |
+| **Administrateur** | admin@m-motors.com | password |
+| **Utilisateur** | user@m-motors.com | password |
 
-> **📍 URL de Production :** [VOTRE_LIEN_DE_DEPLOYEMENT_ICI]
+> **📍 URL de Production :** [https://baptiste-wd.fr/m-motors/]
